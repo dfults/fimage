@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="fimage - find / favorite & share images">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" type="text/css" href="css/fimage.css">
+        <link rel="stylesheet" type="text/css" href="css/fimage-logo.css">
+        <link rel="stylesheet" type="text/css" href="css/fimage-tools.css">
+        <link rel="stylesheet" type="text/css" href="css/fimage-image.css">
+        <link rel="stylesheet" type="text/css" href="css/fimage-image-view.css">
+        <link rel="stylesheet" type="text/css" href="css/fimage-gallery-view.css">
+    </head>
+    <body>
+        <p>Loading fimage...</p>
+        <script type="text/javascript" src="js/fimage.js"></script>
+        <script type="text/javascript" src="js/fimage-logo.js"></script>
+        <script type="text/javascript" src="js/fimage-tools.js"></script>
+        <script type="text/javascript" src="js/fimage-image.js"></script>
+        <script type="text/javascript" src="js/fimage-image-view.js"></script>
+        <script type="text/javascript" src="js/fimage-gallery-view.js"></script>
+        <script>
+          window.onload = function window_onload() {
+
+            // Create a single global FImage to occupy the Body
+            BodyFimage = new Fimage('fimage', document.querySelector('body')).init();
+          };
+        </script>
+    </body>
+</html>
+

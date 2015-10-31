@@ -1,0 +1,30 @@
+
+.fimage-image-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.fimage-image-view__center {
+  position: absolute;
+  top: 0;
+  bottom: 12px;
+  left: 11%;
+  right: 11%;
+}
+.fimage-image-view__left {
+  position: absolute;
+  top: 0;
+  bottom: 12px;
+  left: 0;
+  right: 91%;
+}
+.fimage-image-view__right {
+  position: absolute;
+  top: 0;
+  bottom: 12px;
+  left: 91%;
+  right: 0;
+}

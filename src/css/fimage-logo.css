@@ -1,0 +1,22 @@
+
+.fimage-logo {
+  position: absolute;
+  width: 360px;
+  top: 30%;
+  left: 50%;
+  margin-left: -180px;
+  color: #EEE;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.fimage-logo__name:before {
+  font-size: 4em;
+  content: "fimage.us";
+}
+.fimage-logo__tagline:before {
+  display: inline-block;
+  margin-top: 0.7em;
+  content: "\0022 find, fave & share images\0022";
+}
+

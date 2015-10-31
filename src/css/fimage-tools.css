@@ -1,0 +1,76 @@
+
+.fimage-tools * {
+  font-size: 1.1em;
+  background-color: #444;
+  color: #EEE;
+  border: 0 solid;
+}
+
+.fimage-tools input {
+  display: inline-block;
+  height: 42px;
+  width: 62%;
+  border-radius: 4px;
+  padding-left: 1em;
+  margin-right: 22px;
+}
+
+.fimage-tools__tool {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  height: 42px;
+  min-width: 42px;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 6px;
+  border-radius: 4px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  cursor: pointer;
+}
+.fimage-tools__tool:before {
+  line-height: 43px;
+  font-family: sans-serif;
+}
+.fimage-tools__tool:hover {
+  background-color: #222;
+}
+
+.fimage-tools__clear-search:before {
+  content: 'X';
+}
+.fimage-tools__previous:before {
+  content: '<';
+}
+.fimage-tools__next:before {
+  content: '>';
+}
+
+.fimage-tools__previous {
+  float: right;
+}
+.fimage-tools__next {
+  float: right;
+}
+
+@media screen {
+  @media (max-width: 480px) {
+    .fimage-tools input {
+      width: 50%;
+    }
+    .fimage-tools__tool {
+      margin-right: 4px;
+    }
+    .fimage-tools input {
+      margin-right: 10px;
+    }
+  }
+}
+
