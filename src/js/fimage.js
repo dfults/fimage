@@ -171,7 +171,9 @@ function Fimage(id, parent) {
       viewComponent = new FimageGalleryView(viewAreaEl);
     }
     viewComponent.show(images, imagePos);
-    toolsComponent.updateNavTools(images.length, imagePos);
+    if (toolsComponent) {
+      toolsComponent.updateNavTools(images.length, imagePos);
+    }
   };
 
   var search = function() {
