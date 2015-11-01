@@ -117,6 +117,7 @@ function Fimage(id, parent) {
         search();
       }
     }
+    ev.preventDefault();
     return false;
   };
 

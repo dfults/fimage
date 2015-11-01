@@ -106,7 +106,7 @@ function FimageTools(
     previousEl.addEventListener('touchstart', previous);
   };
 
-  var clearSearch = function() {
+  var clearSearch = function(ev) {
 
     // Clear the search field & search, re-render to include new search
     // data-list, set the focus back for new input
@@ -117,6 +117,7 @@ function FimageTools(
       searchInputEl.focus();
     });
     updateSearchList();
+    ev.preventDefault();
     return false;
   };
 
@@ -137,21 +138,24 @@ function FimageTools(
     toolsEl.appendChild(searchList);
   };
 
-  var next = function() {
+  var next = function(ev) {
+    console.log(ev);
     if (!nextCallback) {
       return;
 
     }
     nextCallback();
+    ev.preventDefault();
     return false;
   };
 
-  var previous = function() {
+  var previous = function(ev) {
     if (!previousCallback) {
       return;
 
     }
     previousCallback();
+    ev.preventDefault();
     return false;
   };
 
@@ -208,6 +212,7 @@ function FimageTools(
       // Debounce user's typing, call the search callback once settled.
       debounceSearch(value);
     }
+    ev.preventDefault();
     return false;
   };
 
