@@ -11,6 +11,7 @@ function Fimage(id, parent) {
   var viewArea;
   var toolsComponent;
   var viewComponent;
+  var imageSources = [];
   var images = [];
   var imagePos = 0;
   var searches = [];
@@ -46,13 +47,26 @@ function Fimage(id, parent) {
           show();
         }, 700);
       }
+
+      var shutterstock = new FimageSourceShutterstock();
+      imageSources.push(shutterstock);
     }
   };
 
   var search = function() {
     console.log('Find image: ' + searchString);
-
     images = [];
+    for (var i in imageSources) {
+      var imageSource = imageSources[i];
+      imageSource.search(searchString, function(results) {
+
+        // Add images into the collected list
+        images = results;  // For now, just set.
+
+        showView();  // Re-show the current view
+      });
+    }
+    /*
     if (searchString) {
       var image = {
         url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSi958u22R8Dt1dPk0sMXN8l_EG91v3XKCN5QzaC__NRngka160',
@@ -67,7 +81,8 @@ function Fimage(id, parent) {
       };
       images.push(image2);
     }
-    showView();  // Re-show the current view
+     showView();  // Re-show the current view
+    */
   };
 
   var showTools = function() {
