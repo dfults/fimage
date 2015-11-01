@@ -178,11 +178,13 @@ function FimageTools(
       settledSearchValue = latestSearchValue = value;
       searchSettled();
 
-      // Accept input (blur), knock down any datalist options window that's up.
-      // Note we don't do this just based on a time-out from typing in case the
-      // user's not done typing or is reaching for the mouse to select something
+      // Accept input - knock down any datalist options window that's up,
+      // rebuild it to have new list, and remove focus (blur). Note we
+      // don't do this just based on a time-out from typing in case the user's
+      // not done typing or is reaching for the mouse to select something
       // from the datalist.
       if (value) {
+        show();
         searchInputEl.blur();
       }
     } else {
