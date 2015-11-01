@@ -91,11 +91,14 @@ function FimageSourceShutterstock() {
               'class="fimage__link" ' +
               'data-search="similar to #' + id + '"' +
               '>view similar</a>';
+            var buyLink = '<a class="fimage__link"' +
+              'target="_blank" ' +
+              'href="http://www.shutterstock.com/pic-' + id + '"' + '>shutterstock.com</a>';
             var image = {
               url: url,
               width: width,
               height: height,
-              title: escapeHtml(description) + viewSimilarLink
+              title: escapeHtml(description) + viewSimilarLink + buyLink
             };
             images.push(image);
           }
