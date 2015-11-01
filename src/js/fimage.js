@@ -118,6 +118,7 @@ function Fimage(id, parent) {
       }
     }
     ev.preventDefault();
+    ev.stopPropagation();
     return false;
   };
 

@@ -118,6 +118,7 @@ function FimageTools(
     });
     updateSearchList();
     ev.preventDefault();
+    ev.stopPropagation();
     return false;
   };
 
@@ -146,6 +147,7 @@ function FimageTools(
     }
     nextCallback();
     ev.preventDefault();
+    ev.stopPropagation();
     return false;
   };
 
@@ -156,6 +158,7 @@ function FimageTools(
     }
     previousCallback();
     ev.preventDefault();
+    ev.stopPropagation();
     return false;
   };
 
