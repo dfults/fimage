@@ -10,6 +10,10 @@
   font-size: 1.4em;
 }
 
+.fimage-logo * {
+  font-family: sans-serif;
+}
+
 .fimage-logo__name:before {
   font-size: 4em;
   content: "fimage.us";

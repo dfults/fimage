@@ -13,7 +13,7 @@ function FimageTools(parent, searchChangedCallback, previousCallback, nextCallba
 
   var render = function (initialOpacity) {
     var html = '';
-    html+= '<div class="fimage-tools" style="opacity: 0.0">';
+    html+= '<div class="fimage-tools fimage-tool--no-user-select" style="opacity: 0.0">';
     html+= '<div class="fimage-tools__clear-search fimage-tools__tool"></div>';
     html+= '<input type="text" placeholder=" find image" list="searchList" value="' + lastProcessedSearch + '"/>';
     html+= '<div class="fimage-tools__next fimage-tools__tool"></div>';  // reverse order for floating

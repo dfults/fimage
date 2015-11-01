@@ -2,6 +2,7 @@
 function FimageImage(parent) {
   var image;
   var imageEl;
+  var spacing = {};
   var render = function () {
     var imageUrl = image.url;
     var imageWidth = image.width;
@@ -18,17 +19,19 @@ function FimageImage(parent) {
       // Image will be constrained by the height of the canvas space
       backgroundHeight = canvasHeight;
       backgroundWidth = canvasHeight / imageRatio;
-      positionY = 0;
-      positionX = (canvasWidth - backgroundWidth)/2;
+      spacing.vertical = 0;
+      spacing.horizontal = (canvasWidth - backgroundWidth)/2;
 
     } else {
 
       // Image will be constrained by the width of the canvas space
       backgroundWidth = canvasWidth;
       backgroundHeight = canvasWidth * imageRatio;
-      positionX = 0
-      positionY = (canvasHeight - backgroundHeight)/2;
+      spacing.horizontal = 0;
+      spacing.vertical = (canvasHeight - backgroundHeight)/2;
     }
+    positionY = spacing.vertical;
+    positionX = spacing.horizontal;
 
     var html = '';
     html += '<div class="fimage-image fimage--trans-opacity-fast" style="';
@@ -43,13 +46,16 @@ function FimageImage(parent) {
   };
 
   var api = {
-    show: function (imageToShow) {
+    show: function(imageToShow) {
       image = imageToShow;
       parent.innerHTML = render();
       imageEl = parent.querySelector(' .fimage-image');
       setTimeout(function() {
         imageEl.style.opacity = '1.0';
       });
+    },
+    getSpacing: function() {
+      return spacing;
     }
   };
   return api;

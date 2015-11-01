@@ -10,7 +10,7 @@
 .fimage-image-view__center {
   position: absolute;
   top: 0;
-  bottom: 12px;
+  bottom: 50px;
   left: 11%;
   right: 11%;
 }
@@ -27,4 +27,18 @@
   bottom: 12px;
   left: 91%;
   right: 0;
+}
+
+.fimage-image-view__title {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background-color: #333;
+  padding-top: 12px;
+  font-family: sans-serif;
+  font-size: 14px;
+  max-width: 100%;
+  color: #EEE;
+
 }
