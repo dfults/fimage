@@ -20,7 +20,7 @@ function FimageTools(
   var mode;        // View mode
   var toolsEl;     // Our tools wrapper
   var clearEl;     // Tool Elements
-  var searchEl;
+  var searchInputEl;
   var previousEl;
   var nextEl;
 
@@ -70,14 +70,14 @@ function FimageTools(
     parent.innerHTML = render('0.0' /* initialOpacity */);
     toolsEl = parent.querySelector('.fimage-tools');
     clearEl = parent.querySelector(' .fimage-tools__clear-search');
-    searchEl = parent.querySelector('.fimage-tools input');
+    searchInputEl = parent.querySelector('.fimage-tools input');
     previousEl = parent.querySelector(' .fimage-tools__previous');
     nextEl = parent.querySelector(' .fimage-tools__next');
 
     updateNavTools();
     updateSearchTools();
 
-    searchEl.focus();
+    searchInputEl.focus();
     toolsEl.style.opacity = initialOpacity;
 
     // Add a queue delay to let tools area settle in the desired initial
@@ -87,8 +87,8 @@ function FimageTools(
       toolsEl.style.opacity = '1.0';
     });
 
-    searchEl.addEventListener('keyup', inputListener);
-    searchEl.addEventListener('input', inputListener);
+    searchInputEl.addEventListener('keyup', inputListener);
+    searchInputEl.addEventListener('input', inputListener);
     clearEl.addEventListener('mousedown', clearSearch);
     clearEl.addEventListener('touchstart', clearSearch);
     nextEl.addEventListener('mousedown', next);
@@ -101,11 +101,11 @@ function FimageTools(
 
     // Clear the search field & search, re-render to include new search
     // data-list, set the focus back for new input
-    searchEl.value = '';
+    searchInputEl.value = '';
     settledSearchValue = latestSearchValue = '';
     searchSettled();
     setTimeout(function() {
-      searchEl.focus();
+      searchInputEl.focus();
     });
     updateSearchList();
   };
@@ -183,7 +183,7 @@ function FimageTools(
       // user's not done typing or is reaching for the mouse to select something
       // from the datalist.
       if (value) {
-        searchEl.blur();
+        searchInputEl.blur();
       }
     } else {
 
