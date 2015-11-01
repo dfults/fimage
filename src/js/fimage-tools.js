@@ -1,5 +1,11 @@
 
-function FimageTools(parent, placeholder, searchChangedCallback, previousCallback, nextCallback) {
+function FimageTools(
+    parent,
+    placeholder,
+    searchChangedCallback,
+    previousCallback,
+    nextCallback
+) {
   var mode;
   var toolsEl;
   var clearEl;
@@ -11,20 +17,25 @@ function FimageTools(parent, placeholder, searchChangedCallback, previousCallbac
   var lastProcessedSearch = '';
   var searches = [];
 
-  var render = function (initialOpacity) {
+  var render = function(initialOpacity) {
     var html = '';
-    html+= '<div class="fimage-tools fimage-tool--no-user-select" style="opacity: 0.0">';
-    html+= '<div class="fimage-tools__clear-search fimage-tools__tool"></div>';
-    html+= '<input type="text" placeholder=" ' + placeholder + '" list="searchList" value="' + lastProcessedSearch + '"/>';
-    html+= '<div class="fimage-tools__next fimage-tools__tool"></div>';  // reverse order for floating
-    html+= '<div class="fimage-tools__previous fimage-tools__tool"></div>';
-    html+= '</div>';
-    html+= renderSearchList();
+    html += '<div class="fimage-tools fimage-tool--no-user-select" ' +
+            'style="opacity: 0.0">';
+    html += '<div class="fimage-tools__clear-search fimage-tools__tool"></div>';
+    html += '<input type="text" placeholder=" ' + placeholder +
+            '" list="searchList" value="' + lastProcessedSearch + '"/>';
+
+    // reverse right-side tool order to adjust for float effect
+    html += '<div class="fimage-tools__next fimage-tools__tool"></div>';
+    html += '<div class="fimage-tools__previous fimage-tools__tool"></div>';
+    html += '</div>';
+    html += renderSearchList();
     return html;
   };
 
-  // Render HTML for data-list entry aid on browsers that support it (if the browser doesn't support it,
-  // gracefully degrades to just a regular text input)
+  // Render HTML for data-list entry aid on browsers that support it (if the
+  // browser doesn't support it, gracefully degrades to just a regular text
+  // input)
   var renderSearchList = function(optionsOnly) {
     if (!optionsOnly) {
       html = '<datalist id="searchList">';
@@ -52,8 +63,9 @@ function FimageTools(parent, placeholder, searchChangedCallback, previousCallbac
     searchEl.focus();
     toolsEl.style.opacity = initialOpacity;
 
-    // Add a queue delay to let tools area settle in the desired initial opacity before transitioning to 100%
-    setTimeout(function () {
+    // Add a queue delay to let tools area settle in the desired initial
+    // opacity before transitioning to 100%
+    setTimeout(function() {
       toolsEl.classList.add('fimage--trans-opacity');
       toolsEl.style.opacity = '1.0';
     });
@@ -70,8 +82,8 @@ function FimageTools(parent, placeholder, searchChangedCallback, previousCallbac
 
   var clearSearch = function() {
 
-    // Clear the search field & search, re-render to include new search data-list,
-    // set the focus back for new input
+    // Clear the search field & search, re-render to include new search
+    // data-list, set the focus back for new input
     searchEl.value = '';
     settledSearchValue = latestSearchValue = '';
     searchSettled();
@@ -137,7 +149,8 @@ function FimageTools(parent, placeholder, searchChangedCallback, previousCallbac
 
     }
 
-    // Show searches in lower case only, so user can see it's not case sensitive.
+    // Show searches in lower case only, so user can see it's not
+    // case sensitive.
     var value = ev.target.value;
     ev.target.value = value.toLowerCase();
     if (ev.keyCode == 13 /* RETURN */ || !value) {
@@ -183,11 +196,14 @@ function FimageTools(parent, placeholder, searchChangedCallback, previousCallbac
         settledSearchValue = value;
         debounceSearch(latestSearchValue);
       }
-    }, value.length >= 3 ? 700 : 3000); // wait longer for short strings, user might be choosing from list
+    },
+
+    // wait longer for short strings, user might be choosing from list
+    value.length >= 3 ? 700 : 3000);
   };
 
-  // Add a search string to the list of searches performed, for datalist entry aid of presenting
-  // searches the user might like to do again
+  // Add a search string to the list of searches performed, for datalist
+  // entry aid of presenting searches the user might like to do again
   var addToSearchList = function(search) {
     if (!search || search.length < 3) {
       return;

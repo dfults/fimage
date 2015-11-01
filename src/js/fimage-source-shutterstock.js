@@ -6,7 +6,7 @@ function FimageSourceShutterstock() {
   var getAuthorization = function() {
     var clientId = 'de95102af805663687dd';
     var clientSecret = 'e555564d2aee0ecd900bba125bfa2e60a4a9ecac';
-    return 'Basic ' + window.btoa(clientId + ':' + clientSecret) ;
+    return 'Basic ' + window.btoa(clientId + ':' + clientSecret);
   };
 
   var api = {
@@ -23,7 +23,8 @@ function FimageSourceShutterstock() {
       var headerData = {
         'Authorization' : getAuthorization()
       };
-      simpleAjax('GET', API_URL, params, null /* postData */, headerData, function(jsonResponse) {
+      simpleAjax('GET', API_URL, params, null /* postData */, headerData,
+          function(jsonResponse) {
 
         var response = JSON.parse(jsonResponse);
         var total = response.total_count;
@@ -38,7 +39,7 @@ function FimageSourceShutterstock() {
           var width = preview.width;
           var height = preview.height;
           var image = {
-            url : url,
+            url: url,
             width: width,
             height: height,
             title: description

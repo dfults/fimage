@@ -38,7 +38,7 @@ function Fimage(id, parent) {
       } else {
         // Flash the logo, then remove it
         logoArea.style.display = 'block';
-        new FimageLogo().flashIn(logoArea, function () {
+        new FimageLogo().flashIn(logoArea, function() {
           logoArea.firstElementChild.remove();
           logoArea.style.display = 'none';
         });
