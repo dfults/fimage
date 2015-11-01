@@ -13,8 +13,6 @@
 // * Search input is debounced, so actual search isn't performed until
 //   user hits return or stops typing
 // * 'X" tool to clear search
-// * After clearing a search, previous searches appear as suggestions
-//   (for browsers that support datalist)
 // * Views & ImageSources are treated as (future)replaceable modules
 // * ImageSource (initially for Shutterstock) provides image array in
 //   standard format, which is then passed to the view for presentation.

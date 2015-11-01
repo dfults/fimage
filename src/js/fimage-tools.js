@@ -17,6 +17,11 @@ function FimageTools(
     previousCallback,
     nextCallback
 ) {
+
+  // The data list "suggestions" for search area.  I'm not liking
+  // this at the moment, it seems more annoying & sometimes confusing than
+  // is actually helpful, so turning it off, to see if it's even missed.
+  var ENABLE_DATA_LIST = false;
   var mode;        // View mode
   var toolsEl;     // Our tools wrapper
   var clearEl;     // Tool Elements
@@ -54,6 +59,10 @@ function FimageTools(
   // browser doesn't support it, gracefully degrades to just a regular text
   // input)
   var renderSearchList = function(optionsOnly) {
+    if (!ENABLE_DATA_LIST) {
+      return "";
+
+    }
     if (!optionsOnly) {
       html = '<datalist id="searchList">';
     }
@@ -111,6 +120,10 @@ function FimageTools(
   };
 
   var updateSearchList = function() {
+    if (!ENABLE_DATA_LIST) {
+      return;
+
+    }
 
     // Remove the old search data list & replace with current info
     var searchList = document.getElementById('searchList');
@@ -119,7 +132,7 @@ function FimageTools(
     }
     searchList = document.createElement('datalist');
     searchList.id = 'searchList';
-    searchList.innerHTML = renderSearchList();
+    searchList.innerHTML = renderSearchList(true /* optionsOnly */);
     toolsEl.appendChild(searchList);
   };
 
