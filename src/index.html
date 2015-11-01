@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Fimage</title>
+        <title>fimage.us</title>
         <meta name="description" content="fimage - find images">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -26,11 +26,22 @@
         <script type="text/javascript" src="js/fimage-gallery-view.js"></script>
         <script type="text/javascript" src="js/fimage-source-shutterstock.js"></script>
         <script>
+
+          // Operational parameters to allow skipping the LOGO sequence while
+          // developing, unless specifically turned on
+          var DEV_MODE = window.location.hostname === 'localhost';
+          var DEV_FORCE_LOGO = true;
+
+          // Simplify browser URL, reflective of single page app
+          if (!DEV_MODE) {
+            window.history.pushState(null, "fimage.us", "/");
+          }
           window.onload = function window_onload() {
 
             // Create a single global FImage within the body
             FimageInstance = new Fimage('fimage', document.querySelector('body'));
             FimageInstance.init();
+
           };
         </script>
     </body>

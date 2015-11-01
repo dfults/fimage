@@ -43,12 +43,6 @@
 //////////////////////////////////////////////////////////////////////////
 
 function Fimage(id, parent) {
-
-  // Operational parameters to allow skipping the LOGO sequence while
-  // developing, unless specifically turned on
-  var DEV_MODE = window.location.hostname === 'localhost';
-  var DEV_FORCE_LOGO = true;
-
   var view = '';          // String name of current view (init to none)
   var searchString = '';  // And no search string
   var lightboxEl;         // Element references
