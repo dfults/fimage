@@ -1,51 +1,33 @@
+//////////////////////////////////////////////////////////////////////////
 //
-// A simple Ajax function in lieu of a fuller library implementation.
+// Simple Ajax function functionality lieu of a fuller library implementation,
+// designed as a function instead of a module for easier switching to
+// common implementations if desired.
 //
-// headerData:  Object holding header data to set, e.g. {Content-type: 'application/json; charset=utf-8'}
-//
-simpleAjax = function(method, url, params, postData, headerData, callbackFunction) {
-  var xhreq = function() {
-    if (window.ActiveXObject) {
-      return new ActiveXObject(/*NO*/'Microsoft.XMLHTTP');
-    } else if (window.XMLHttpRequest) {
-      return new XMLHttpRequest();
-    }
-    return false;
-  }();
+//////////////////////////////////////////////////////////////////////////
 
-  if(xhreq) {
-    if (!postData) postData = "";
-    if (!headerData) headerData = "";
+Fimage.simpleAjax = function(
+    method,      // GET, PUT, etc.
+    url,         // Fully qualified Url but without qeuery or anchor
+    params,      // Object holding parameters to be encoded & serialized
+    postData,    // For PUTs:  Object holding header data to set
+    headerData,  // Object holding header data to set, e.g.
+                 //     {Content-type: 'application/json; charset=utf-8'}
+    callbackFunction  // Function to be called back with response & status
+) {
+  var xhreq = false;
+  if (window.ActiveXObject) {
+    xhreq = new ActiveXObject(/*NO*/'Microsoft.XMLHTTP');
+  } else if (window.XMLHttpRequest) {
+    xhreq = new XMLHttpRequest();
+  }
+  if (xhreq) {
     xhreq.onreadystatechange = function() {
       switch (xhreq.readyState) {
-        case 1:
-          xhreq.t1 = new Date().getTime();  // Not the start of state 1
-          break;
-        case 2:
-          xhreq.t2 = new Date().getTime();
-          break;
-        case 3:
-          break;
         case 4:
-          var connectDelay = xhreq.t2  - xhreq.t1;
-          console.log("Xhreq time to connect: " + connectDelay + "ms");
-          if ((xhreq.status==200) || ((xhreq.status==0 && xhreq.responseText))) {
-            if (xhreq.status==0) {
-              console.log("XHxhreq returned status of 0, but there appears to be responseText, so assuming OK");
-            }
-            // Success!  As expected
-            callbackFunction(xhreq.responseText, xhreq.status, connectDelay);
-          } else if (xhreq.status==0) {  // Except if status 0 and there is no reponseText, we have a problem...
-            console.log("XHxhreq returned status of 0 but no responseText, statusText '" + xhreq.statusText + "'");
-            console.log("URL was " + url);
-            console.log("document.domain is '" + document.domain + "'");
-            callbackFunction(xhreq.responseText, xhreq.status, connectDelay);
-          } else {
-            // Some other status entirely...
-            console.log("XHxhreq returned status of '" + xhreq.status + "' statusText '" + xhreq.statusText + "'");
-            console.log("URL was " + url);
-            console.log("document.domain is '" + document.domain + "'");
-            callbackFunction(xhreq.responseText, xhreq.status, connectDelay);
+          if ((xhreq.status == 200) ||
+              ((xhreq.status == 0 && xhreq.responseText))) {
+            callbackFunction(xhreq.responseText, xhreq.status);
           }
           break;
         default:
@@ -58,7 +40,6 @@ simpleAjax = function(method, url, params, postData, headerData, callbackFunctio
         query += !query.length ? '?' : '&';
         query += i + '=' + encodeURIComponent(params[i]);
       }
-      console.log('Query is ' + query);
     }
     xhreq.open(method, url + query, true);
     if (headerData) {
@@ -69,7 +50,10 @@ simpleAjax = function(method, url, params, postData, headerData, callbackFunctio
         xhreq.setRequestHeader(i, headerData[i]);
       }
     }
-    xhreq.send(postData);
+    xhreq.send(postData || '');
+  } else {
+    console.log('WARNING: browser does not support XHreq');
   }
   return xhreq;
 };
+

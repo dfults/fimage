@@ -1,13 +1,23 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// FImageLogo
+//
+// Presents a logo inside the indicated parent with animation,
+// then calls the callback when complate
+//
+//////////////////////////////////////////////////////////////////////////
 
 function FimageLogo() {
-  var render = function () {
+  var render = function() {
     var html = '';
-    html += '<div id="fimage-logo" class="fimage-logo fimage--trans-opacity" style="opacity: 0.0">';
+    html += '<div id="fimage-logo" class="fimage-logo fimage--trans-opacity" ' +
+        'style="opacity: 0.0">';
     html += '<div class="fimage-logo__name"></div>';
     html += '<div class="fimage-logo__tagline"></div>';
     html += '</div>';
     return html;
   };
+
   var api = {
     flashIn: function(parent, callback) {
       var html = render();
