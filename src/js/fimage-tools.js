@@ -38,18 +38,26 @@ function FimageTools(
   var timeout;        // most recent timeout timer
 
   var render = function(initialOpacity) {
+
+    var toolClasses = 'fimage-tools__tool';
+    if (!'ontouchstart' in window) {
+
+      // On touch devices, don't bother with hover (no way in CSS to do this
+      // unfortunately), to prevent hover from getting "stuck" on phones
+      toolClasses += ' fimage-tools__tool--hover';
+    }
     var html = '';
     html += '<div class="fimage-tools fimage-tool--no-user-select" ' +
             'style="opacity: 0.0">';
-    html += '<div class="fimage-tools__clear-search fimage-tools__tool"></div>';
+    html += '<div class="fimage-tools__clear-search ' + toolClasses + '"></div>';
     html += '<div class="fimage-tools__search">';
     html += '<input type="text" placeholder=" ' + placeholder +
             '" list="searchList" value="' + lastProcessedSearch + '"/>';
     html += '</div>';
 
     // reverse right-side tool order to adjust for float effect
-    html += '<div class="fimage-tools__next fimage-tools__tool"></div>';
-    html += '<div class="fimage-tools__previous fimage-tools__tool"></div>';
+    html += '<div class="fimage-tools__next ' + toolClasses + '"></div>';
+    html += '<div class="fimage-tools__previous ' + toolClasses + '"></div>';
     html += '</div>';
     html += renderSearchList();
     return html;
