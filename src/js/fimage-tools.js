@@ -40,7 +40,7 @@ function FimageTools(
   var render = function(initialOpacity) {
 
     var toolClasses = 'fimage-tools__tool';
-    if (!'ontouchstart' in window) {
+    if (!('ontouchstart' in window)) {
 
       // On touch devices, don't bother with hover (no way in CSS to do this
       // unfortunately), to prevent hover from getting "stuck" on phones
