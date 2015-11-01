@@ -47,6 +47,9 @@ function FimageSourceShutterstock() {
         }
         callback(images);
       });
+    },
+    getSearchPlaceholder: function() {
+      return 'search shutterstock images';
     }
   };
   return api;

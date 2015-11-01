@@ -11,7 +11,7 @@ function Fimage(id, parent) {
   var viewArea;
   var toolsComponent;
   var viewComponent;
-  var imageSources = [];
+  var imageSource;
   var images = [];
   var imagePos = 0;
   var searches = [];
@@ -48,8 +48,8 @@ function Fimage(id, parent) {
         }, 700);
       }
 
-      var shutterstock = new FimageSourceShutterstock();
-      imageSources.push(shutterstock);
+      // Init image source (at this time, only one available)
+      imageSource = new FimageSourceShutterstock();
     }
   };
 
@@ -57,19 +57,16 @@ function Fimage(id, parent) {
     console.log('Find image: ' + searchString);
     images = [];
     imagePos = 0;
-    for (var i in imageSources) {
-      var imageSource = imageSources[i];
-      imageSource.search(searchString, function(results) {
-
-        // Add images into the collected list
-        images = results;  // For now, just set.
-        showView();  // Re-show the current view
-      });
-    }
+    imageSource.search(searchString, function(results) {
+      images = results;  // For now, just set.
+      showView();  // Re-show the current view
+    });
   };
 
   var showTools = function() {
-    toolsComponent = new FimageTools(toolsArea,
+    toolsComponent = new FimageTools(
+      toolsArea,
+      imageSource.getSearchPlaceholder(),
 
       // Search Callback
       function(searchValue) {
