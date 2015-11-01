@@ -16,7 +16,6 @@ function FimageImage(parent) {
     if (imageRatio > canvasRatio) {
 
       // Image will be constrained by the height of the canvas space
-      console.log('height constrained');
       backgroundHeight = canvasHeight;
       backgroundWidth = canvasHeight / imageRatio;
       positionY = 0;
@@ -25,7 +24,6 @@ function FimageImage(parent) {
     } else {
 
       // Image will be constrained by the width of the canvas space
-      console.log('width constrained');
       backgroundWidth = canvasWidth;
       backgroundHeight = canvasWidth * imageRatio;
       positionX = 0
