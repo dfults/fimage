@@ -169,10 +169,7 @@ function FimageTools(
 
     }
 
-    // Show searches in lower case only, so user can see it's not
-    // case sensitive.
     var value = ev.target.value;
-    ev.target.value = value.toLowerCase();
     if (ev.keyCode == 13 /* RETURN */ || !value) {
 
       // If user hits RETURN, or clears the search,
@@ -197,6 +194,11 @@ function FimageTools(
   };
 
   var search = function() {
+
+    // Show searches in lower case only, so user can see it's not
+    // case sensitive.
+    settledSearchValue = settledSearchValue.toLowerCase();
+    updateSearchString(settledSearchValue);
     searchChangedCallback(settledSearchValue);
     lastProcessedSearch = settledSearchValue;
     addToSearchList(settledSearchValue);
