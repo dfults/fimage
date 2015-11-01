@@ -4,7 +4,11 @@
 //
 // Single image presentation of an "imageToShow" within a parent.
 //
-// Expects imageToShow object holding url, width, height and title.
+// Expects image object to include:
+//    url     - fully qualified url to actual image
+//    width   - image width in pixels
+//    height  - image height in pixels
+//    title   - title or description of image, may include HTML such as links
 //
 // Inspects the parent element size to determine how large the image can
 // be made and yet fit in its entirety within the parent, adding spacing

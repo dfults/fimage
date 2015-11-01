@@ -12,6 +12,13 @@
 // be put to excessive use, the risk is limited to fimage.us failing to
 // retrieve Shutterstock // images.
 //
+// Produced array of image, as passed back via callback, provides image data
+// in the following format:
+//    url     - fully qualified url to actual image
+//    width   - image width in pixels
+//    height  - image height in pixels
+//    title   - title or description of image, may include HTML such as links
+//
 //////////////////////////////////////////////////////////////////////////
 
 function FimageSourceShutterstock() {
