@@ -12,21 +12,21 @@
   position: absolute;
   top: 0;
   bottom: 50px;
-  left: 7%;
-  right: 7%;
+  left: 4%;
+  right: 4%;
 }
 .fimage-image-view__left {
   position: absolute;
   top: 0;
   bottom: 12px;
   left: 0;
-  right: 95%;
+  right: 98%;
 }
 .fimage-image-view__right {
   position: absolute;
   top: 0;
   bottom: 12px;
-  left: 95%;
+  left: 98%;
   right: 0;
 }
 
