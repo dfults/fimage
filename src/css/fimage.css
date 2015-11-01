@@ -37,6 +37,12 @@ body {
   right: 0;
 }
 
+.fimage__link {
+  margin-left: 1em;
+  margin-right: 1em;
+  color: #888;
+}
+
 .fimage--trans-opacity {
   transition: opacity 0.7s;
   -moz-transition: opacity 0.7s;

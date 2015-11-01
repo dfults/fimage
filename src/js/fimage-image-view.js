@@ -9,7 +9,7 @@
 // previews of previous & next images, theough just being used for layout
 // at the moment.
 //
-// Presents a title directly underneath the image, checking on the resulting
+// Presents the title directly underneath the image, checking on the resulting
 // spacing to make sure it's right below the image, and not always at the
 // bottom of the view area.
 //
@@ -30,21 +30,6 @@ function FimageImageView(parent) {
     return html;
   };
 
-  // A simple HTML text escape routine compliments of Moustache, to guard
-  // against chars in image titles that have specific meaning in HTML
-  var entityMap = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-    '/': '&#x2F;'
-  };
-  function escapeHtml(string) {
-    return String(string).replace(/[&<>"'\/]/g, function(s) {
-      return entityMap[s];
-    });
-  }
 
   var api = {
     show: function(imagesToShow, positionToShow) {
@@ -60,7 +45,9 @@ function FimageImageView(parent) {
         title.classList.add('fimage-image-view__title');
         title.style.top = '-' + (imageComponent.getSpacing().vertical + 5) +
             'px';
-        title.innerHTML = escapeHtml(image.title);
+
+        // Note the image title is already escaped, may include html
+        title.innerHTML = image.title;
         center.appendChild(title);
       }
     },

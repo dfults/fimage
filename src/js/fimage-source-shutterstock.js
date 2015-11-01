@@ -16,7 +16,7 @@
 
 function FimageSourceShutterstock() {
 
-  var API_URL = 'https://api.shutterstock.com/v2/images/search';
+  var API_URL_BASE = 'https://api.shutterstock.com/v2/';
 
   // Shutterstock uses basic authentication, these are the credentials for
   // the "fimage" application registered with Shutterstock
@@ -25,6 +25,22 @@ function FimageSourceShutterstock() {
     var clientSecret = 'e555564d2aee0ecd900bba125bfa2e60a4a9ecac';
     return 'Basic ' + window.btoa(clientId + ':' + clientSecret);
   };
+
+  // A simple HTML text escape routine compliments of Moustache, to guard
+  // against chars in image titles that have specific meaning in HTML
+  var entityMap = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+    '/': '&#x2F;'
+  };
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"'\/]/g, function(s) {
+      return entityMap[s];
+    });
+  }
 
   var api = {
     search: function(q, callback) {
@@ -36,16 +52,23 @@ function FimageSourceShutterstock() {
       var params = {
 
         // Fetch the 100 most popular images for this query
-        query: q,
         image_type: 'photo',
         page: 1,
         per_page: 100,
         sort_method: 'popular'
       };
+      var url = API_URL_BASE;
+      if (q.indexOf('similar to #') === 0) {
+        var id = q.substring('similar to #'.length, q.length);
+        url += 'images/' + id + '/similar';
+      } else {
+        url += 'images/search';
+        params.query = q;
+      }
       var headerData = {
         'Authorization' : getAuthorization()
       };
-      Fimage.simpleAjax('GET', API_URL, params, null /* postData */, headerData,
+      Fimage.simpleAjax('GET', url, params, null /* postData */, headerData,
           function(jsonResponse) {
 
         var response = JSON.parse(jsonResponse);
@@ -57,16 +80,22 @@ function FimageSourceShutterstock() {
         var data = response.data;
         if (data) {
           for (var i in data) {
-            var description = data[i].description;
-            var preview = data[i].assets.preview;
+            var photoData = data[i];
+            var description = photoData.description;
+            var preview = photoData.assets.preview;
             var url = preview.url;
             var width = preview.width;
             var height = preview.height;
+            var id = photoData.id;
+            var viewSimilarLink = '<a href="#" ' +
+              'class="fimage__link" ' +
+              'data-search="similar to #' + id + '"' +
+              '>view similar</a>';
             var image = {
               url: url,
               width: width,
               height: height,
-              title: description
+              title: escapeHtml(description) + viewSimilarLink
             };
             images.push(image);
           }

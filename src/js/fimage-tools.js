@@ -143,6 +143,9 @@ function FimageTools(
     var showClearSearch = lastProcessedSearch;
     setVisibility(clearEl, showClearSearch);
   };
+  var updateSearchString = function(searchString) {
+    searchInputEl.value = searchString;
+  };
   var updateNavTools = function(numImages, curImage) {
     var showPrevious = false;
     var showNext = false;
@@ -245,6 +248,9 @@ function FimageTools(
     },
     updateNavTools: function(numImages, curImage) {
       updateNavTools(numImages, curImage);
+    },
+    updateSearchString: function(searchString) {
+      updateSearchString(searchString);
     }
   };
 

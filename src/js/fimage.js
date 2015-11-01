@@ -78,6 +78,9 @@ function Fimage(id, parent) {
     toolsAreaEl = lightboxEl.querySelector(' .fimage__tools-area');
     viewAreaEl = lightboxEl.querySelector(' .fimage__view-area');
 
+    viewAreaEl.addEventListener('mousedown', tap);
+    viewAreaEl.addEventListener('touch', tap);
+
     // Present logo, fade in UI
     if (DEV_MODE && !DEV_FORCE_LOGO) {
       show();
@@ -104,6 +107,21 @@ function Fimage(id, parent) {
         search();
 
       }, 700);
+    }
+  };
+
+  var tap = function(ev) {
+    var target = ev.target;
+
+    // If user taps on a link with "data-search" attribute, search on
+    // the value of that attribute.
+    if (target.classList.contains('fimage__link')) {
+      var searchAction = target.getAttribute('data-search');
+      if (searchAction) {
+        searchString = searchAction;
+        toolsComponent.updateSearchString(searchString);
+        search();
+      }
     }
   };
 
