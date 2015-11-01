@@ -29,7 +29,7 @@
 @media screen {
   @media (max-width: 480px) {
     .fimage-logo__name:before {
-      font-size: 3em;
+      font-size: 2.5em;
     }
   }
 }

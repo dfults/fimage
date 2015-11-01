@@ -106,12 +106,14 @@ function FimageTools(
 
     searchInputEl.addEventListener('keyup', inputListener);
     searchInputEl.addEventListener('input', inputListener);
+
+    // Add event listeners for next & previous buttons, firing on the mouse
+    // or touch down, to gain a few hundred milliseconds in response time.
     if ('onmousedown' in window) {
       clearEl.addEventListener('mousedown', clearSearch);
       nextEl.addEventListener('mousedown', next);
       previousEl.addEventListener('mousedown', previous);
-    }
-    if ('ontouchstart' in window) {
+    } else if ('ontouchstart' in window) {
       clearEl.addEventListener('touchstart', clearSearch);
       nextEl.addEventListener('touchstart', next);
       previousEl.addEventListener('touchstart', previous);
