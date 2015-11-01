@@ -2,7 +2,7 @@
 .fimage-logo {
   position: absolute;
   width: 360px;
-  top: 30%;
+  top: 35%;
   left: 50%;
   margin-left: -180px;
   color: #EEE;
@@ -21,6 +21,8 @@
 .fimage-logo__tagline:before {
   display: inline-block;
   margin-top: 0.7em;
-  content: "\0022 find, fave & share images\0022";
+  <!--  Drop tagline while we flesh out what this thing really is!
+    content: "\0022 find, fave & share images\0022";
+  -->
 }
 

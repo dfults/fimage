@@ -5,6 +5,7 @@
   right: 0;
   top: 0;
   bottom: 0;
+  overflow: hidden;
 }
 
 .fimage-image-view__center {
@@ -33,6 +34,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
+  min-height: 100px;
   text-align: center;
   background-color: #333;
   padding-top: 12px;
