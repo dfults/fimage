@@ -1,3 +1,19 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// FimageImageView
+//
+// A single-Image view
+//
+// Breaks up the view area into a center large image area & spaces off
+// to the left & right (for possible use as either arrows or smaller
+// previews of previous & next images, theough just being used for layout
+// at the moment.
+//
+// Presents a title directly underneath the image, checking on the resulting
+// spacing to make sure it's right below the image, and not always at the
+// bottom of the view area.
+//
+//////////////////////////////////////////////////////////////////////////
 
 function FimageImageView(parent) {
   var images = [];
@@ -42,7 +58,7 @@ function FimageImageView(parent) {
         imageComponent.show(image);
         var title = document.createElement('div');
         title.classList.add('fimage-image-view__title');
-        title.style.top = '-' + (imageComponent.getSpacing().vertical + 4) +
+        title.style.top = '-' + (imageComponent.getSpacing().vertical + 5) +
             'px';
         title.innerHTML = escapeHtml(image.title);
         center.appendChild(title);

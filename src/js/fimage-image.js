@@ -1,8 +1,22 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// FimageImage
+//
+// Single image presentation of an "imageToShow" within a parent.
+//
+// Expects imageToShow object holding url, width, height and title.
+//
+// Inspects the parent element size to determine how large the image can
+// be made and yet fit in its entirety within the parent, adding spacing
+// either above and below or to the left and right of the image.
+//
+//////////////////////////////////////////////////////////////////////////
 
 function FimageImage(parent) {
   var image;
   var imageEl;
   var spacing = {};
+
   var render = function() {
     var imageUrl = image.url;
     var imageWidth = image.width;

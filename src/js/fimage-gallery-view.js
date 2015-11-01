@@ -1,5 +1,11 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// FimageGalleryView
+//
+// Not yet used; when completed should match API for fimage-image-view.js
+//
+//////////////////////////////////////////////////////////////////////////
 
-// Not yet used, when completed should match API for fimage-image-view.js
 function FimageGalleryView(parent) {
   var images = [];
   var imagePos = 0;

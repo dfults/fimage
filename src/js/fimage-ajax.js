@@ -1,7 +1,12 @@
+//////////////////////////////////////////////////////////////////////////
 //
-// A simple Ajax function in lieu of a fuller library implementation.
+// Simple Ajax function functionality lieu of a fuller library implementation,
+// designed as a function instead of a module for easier switching to
+// common implementations if desired.
 //
-simpleAjax = function(
+//////////////////////////////////////////////////////////////////////////
+
+Fimage.simpleAjax = function(
     method,      // GET, PUT, etc.
     url,         // Fully qualified Url but without qeuery or anchor
     params,      // Object holding parameters to be encoded & serialized

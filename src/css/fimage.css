@@ -1,25 +1,24 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  padding: 0;
-  margin: 0;
   position: fixed;
   top: 2%;
   bottom: 2%;
   left: 2%;
   right: 2%;
-  overflow: hidden;
+  padding: 0;
+  margin: 0;
   background-color: black;
-  vertical-align: middle;
 }
+
+.fimage, .fimage * {
+  box-sizing: border-box;
+}
+
 .fimage__lightbox {
+  width: 100%;
+  height: 100%;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  height: 100%;
   max-width: 1600px;
   max-height: 1000px;
   padding-left: 22px;

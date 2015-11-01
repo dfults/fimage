@@ -1,3 +1,14 @@
+//////////////////////////////////////////////////////////////////////////
+//
+// FimageTools
+//
+// Presents & operates the standard Fimage Tools, with callbacks for
+// actions of note.
+//
+// Includes all the search behaviors such as debouncing searches, clearing
+// searches and presenting previous searches (this session) as tips.
+//
+//////////////////////////////////////////////////////////////////////////
 
 function FimageTools(
     parent,
