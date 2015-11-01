@@ -34,8 +34,13 @@ function FimageSourceShutterstock() {
 
       }
       var params = {
+
+        // Fetch the 100 most popular images for this query
         query: q,
-        image_type: 'photo'
+        image_type: 'photo',
+        page: 1,
+        per_page: 100,
+        sort_method: 'popular'
       };
       var headerData = {
         'Authorization' : getAuthorization()
