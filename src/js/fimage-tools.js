@@ -33,8 +33,10 @@ function FimageTools(
     html += '<div class="fimage-tools fimage-tool--no-user-select" ' +
             'style="opacity: 0.0">';
     html += '<div class="fimage-tools__clear-search fimage-tools__tool"></div>';
+    html += '<div class="fimage-tools__search">';
     html += '<input type="text" placeholder=" ' + placeholder +
             '" list="searchList" value="' + lastProcessedSearch + '"/>';
+    html += '</div>';
 
     // reverse right-side tool order to adjust for float effect
     html += '<div class="fimage-tools__next fimage-tools__tool"></div>';
