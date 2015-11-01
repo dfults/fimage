@@ -17,16 +17,20 @@ function FimageTools(
     previousCallback,
     nextCallback
 ) {
-  var mode;
-  var toolsEl;
-  var clearEl;
+  var mode;        // View mode
+  var toolsEl;     // Our tools wrapper
+  var clearEl;     // Tool Elements
   var searchEl;
   var previousEl;
   var nextEl;
+
+  // Search debounce vars
   var latestSearchValue;
   var settledSearchValue;
   var lastProcessedSearch = '';
-  var searches = [];
+
+  var searches = [];  // Searches performed
+  var timeout;        // most recent timeout timer
 
   var render = function(initialOpacity) {
     var html = '';
@@ -202,7 +206,10 @@ function FimageTools(
   };
   var debounceSearch = function(value) {
     latestSearchValue = value;
-    setTimeout(function() {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(function() {
       if (latestSearchValue === settledSearchValue) {
         searchSettled();
       } else {
