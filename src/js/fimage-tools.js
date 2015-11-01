@@ -117,6 +117,7 @@ function FimageTools(
       searchInputEl.focus();
     });
     updateSearchList();
+    return false;
   };
 
   var updateSearchList = function() {
@@ -142,6 +143,7 @@ function FimageTools(
 
     }
     nextCallback();
+    return false;
   };
 
   var previous = function() {
@@ -150,6 +152,7 @@ function FimageTools(
 
     }
     previousCallback();
+    return false;
   };
 
   var updateSearchTools = function() {

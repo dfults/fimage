@@ -117,6 +117,7 @@ function Fimage(id, parent) {
         search();
       }
     }
+    return false;
   };
 
   var showTools = function() {
