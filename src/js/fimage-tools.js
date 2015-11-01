@@ -98,12 +98,16 @@ function FimageTools(
 
     searchInputEl.addEventListener('keyup', inputListener);
     searchInputEl.addEventListener('input', inputListener);
-    clearEl.addEventListener('mousedown', clearSearch);
-    clearEl.addEventListener('touchstart', clearSearch);
-    nextEl.addEventListener('mousedown', next);
-    nextEl.addEventListener('touchstart', next);
-    previousEl.addEventListener('mousedown', previous);
-    previousEl.addEventListener('touchstart', previous);
+    if ('onmousedown' in window) {
+      clearEl.addEventListener('mousedown', clearSearch);
+      nextEl.addEventListener('mousedown', next);
+      previousEl.addEventListener('mousedown', previous);
+    }
+    if ('ontouchstart' in window) {
+      clearEl.addEventListener('touchstart', clearSearch);
+      nextEl.addEventListener('touchstart', next);
+      previousEl.addEventListener('touchstart', previous);
+    }
   };
 
   var clearSearch = function(ev) {

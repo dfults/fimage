@@ -72,8 +72,12 @@ function Fimage(id, parent) {
     toolsAreaEl = lightboxEl.querySelector(' .fimage__tools-area');
     viewAreaEl = lightboxEl.querySelector(' .fimage__view-area');
 
-    viewAreaEl.addEventListener('mousedown', tap);
-    viewAreaEl.addEventListener('touch', tap);
+    if ('onmousedown' in window) {
+      viewAreaEl.addEventListener('mousedown', tap);
+    }
+    if ('ontouchstart' in window) {
+      viewAreaEl.addEventListener('touch', tap);
+    }
 
     // Present logo, fade in UI
     if (DEV_MODE && !DEV_FORCE_LOGO) {
