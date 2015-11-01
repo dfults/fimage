@@ -56,33 +56,16 @@ function Fimage(id, parent) {
   var search = function() {
     console.log('Find image: ' + searchString);
     images = [];
+    imagePos = 0;
     for (var i in imageSources) {
       var imageSource = imageSources[i];
       imageSource.search(searchString, function(results) {
 
         // Add images into the collected list
         images = results;  // For now, just set.
-
         showView();  // Re-show the current view
       });
     }
-    /*
-    if (searchString) {
-      var image = {
-        url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSi958u22R8Dt1dPk0sMXN8l_EG91v3XKCN5QzaC__NRngka160',
-        width: 594,
-        height: 381
-      };
-      images.push(image);
-      var image2 = {
-        url: 'http://images2.roomstogo.com/is/image/roomstogo/lr_sof_10111413_lilithpond~Lilith-Pond-Taupe-Sofa.jpeg%3F$PDP_Primary_525x366$',
-        width: 594,
-        height: 381
-      };
-      images.push(image2);
-    }
-     showView();  // Re-show the current view
-    */
   };
 
   var showTools = function() {
