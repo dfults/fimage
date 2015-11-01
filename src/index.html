@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
-        <meta name="description" content="fimage - find / favorite & share images">
+        <title>Fimage</title>
+        <meta name="description" content="fimage - find images">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <!-- Fimage development CSS - in production would be comobined -->
         <link rel="stylesheet" type="text/css" href="css/fimage.css">
         <link rel="stylesheet" type="text/css" href="css/fimage-logo.css">
         <link rel="stylesheet" type="text/css" href="css/fimage-tools.css">
@@ -14,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="css/fimage-gallery-view.css">
     </head>
     <body>
+        <!-- Fimage developmnt JS- in production would be comobined & minified -->
         <script type="text/javascript" src="js/fimage.js"></script>
         <script type="text/javascript" src="js/fimage-ajax.js"></script>
         <script type="text/javascript" src="js/fimage-logo.js"></script>
@@ -25,8 +28,9 @@
         <script>
           window.onload = function window_onload() {
 
-            // Create a single global FImage to occupy the Body
-            BodyFimage = new Fimage('fimage', document.querySelector('body')).init();
+            // Create a single global FImage within the body
+            FimageInstance = new Fimage('fimage', document.querySelector('body'));
+            FimageInstance.init();
           };
         </script>
     </body>

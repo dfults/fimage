@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////////////////////
 //
-// Simple Ajax function functionality lieu of a fuller library implementation,
-// designed as a function instead of a module for easier switching to
-// common implementations if desired.
+// Simple Ajax function functionality in lieu of an available library
+// implementation, designed as a function instead of a module for easier
+// switching to common implementations if desired.
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -52,7 +52,7 @@ Fimage.simpleAjax = function(
     }
     xhreq.send(postData || '');
   } else {
-    console.log('WARNING: browser does not support XHreq');
+    console.log('WARNING: browser does not support XHReq!');
   }
   return xhreq;
 };
