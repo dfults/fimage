@@ -17,7 +17,9 @@
 //   (for browsers that support datalist)
 // * Views & ImageSources are treated as (future)replaceable modules
 // * ImageSource (initially for Shutterstock) provides image array in
-//   standard format, which is then passed to the view for presentation
+//   standard format, which is then passed to the view for presentation.
+// * Support for source-specific custom links in title, for shutterstock
+//   "View Similar" and a link to the image on their site
 // * View presents images as it likes, initial single image view presents title
 // * Tools area updates visibility of prev/next areas per view
 // * Responsive design allows window to be sized narrowly down to phone widths
