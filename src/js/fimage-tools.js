@@ -154,7 +154,6 @@ function FimageTools(
   };
 
   var next = function(ev) {
-    console.log(ev);
     if (!nextCallback) {
       return;
 

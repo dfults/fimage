@@ -21,9 +21,7 @@
 .fimage-logo__tagline:before {
   display: inline-block;
   margin-top: 0.7em;
-  <!--  Drop tagline while we flesh out what this thing really is!
-    content: "\0022 find, fave & share images\0022";
-  -->
+  content: "";
 }
 
 @media screen {
