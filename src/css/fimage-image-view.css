@@ -11,7 +11,7 @@
 .fimage-image-view__center {
   position: absolute;
   top: 0;
-  bottom: 50px;
+  bottom: 56px;
   left: 4%;
   right: 4%;
 }
@@ -42,4 +42,13 @@
   font-size: 14px;
   max-width: 100%;
   color: #EEE;
+}
+
+.fimage-image-view__tip {
+  width: 100%;
+  padding-left: 3em;
+  padding-right: 4em;
+  text-align: center;
+  font-family: sans-serif;
+  color: #888;
 }

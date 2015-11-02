@@ -19,7 +19,7 @@
 function FimageImage(parent) {
   var image;
   var imageEl;
-  var spacing = {};
+  var spacing;
 
   var render = function() {
     var imageUrl = image.url;
@@ -37,19 +37,22 @@ function FimageImage(parent) {
       // Image will be constrained by the height of the canvas space
       backgroundHeight = canvasHeight;
       backgroundWidth = canvasHeight / imageRatio;
-      spacing.vertical = 0;
-      spacing.horizontal = (canvasWidth - backgroundWidth) / 2;
+      spacing = {};
+      spacing.top = spacing.bottom = 0;
+      spacing.left = spacing.right = (canvasWidth - backgroundWidth) / 2;
 
     } else {
 
       // Image will be constrained by the width of the canvas space
       backgroundWidth = canvasWidth;
       backgroundHeight = canvasWidth * imageRatio;
-      spacing.horizontal = 0;
-      spacing.vertical = (canvasHeight - backgroundHeight) / 2;
+      spacing = {};
+      spacing.left = spacing.right = 0;
+      spacing.top = 0.4 * (canvasHeight - backgroundHeight);
+      spacing.bottom = 0.6 * (canvasHeight - backgroundHeight);
     }
-    positionY = spacing.vertical;
-    positionX = spacing.horizontal;
+    positionY = spacing.top;
+    positionX = spacing.left;
 
     var html = '';
     html += '<div class="fimage-image fimage--trans-opacity-fast" style="';
@@ -64,15 +67,32 @@ function FimageImage(parent) {
   };
 
   var api = {
-    show: function(imageToShow) {
+    show: function(imageToShow, callback) {
+      var showLow = function() {
+        parent.innerHTML = render();
+        imageEl = parent.querySelector(' .fimage-image');
+        setTimeout(function() {
+          imageEl.style.opacity = '1.0';
+        });
+      };
       image = imageToShow;
-      parent.innerHTML = render();
-      imageEl = parent.querySelector(' .fimage-image');
-      setTimeout(function() {
-        imageEl.style.opacity = '1.0';
-      });
+      if (image.width && image.height) {
+        showLow();
+        callback();
+      } else {
+
+        // If no Url, then we need to call the "inof" function to fetch that &
+        // other info we need to be able to render the image.
+        if (image.info) {
+          image.info(image, function(imageInfo) {
+            image = imageInfo;
+            showLow();
+            callback();
+          });
+        }
+      }
     },
-    getSpacing: function() {
+    getSpacing: function(callback) {
       return spacing;
     }
   };

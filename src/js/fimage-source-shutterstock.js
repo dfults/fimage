@@ -33,22 +33,6 @@ function FimageSourceShutterstock() {
     return 'Basic ' + window.btoa(clientId + ':' + clientSecret);
   };
 
-  // A simple HTML text escape routine compliments of Moustache, to guard
-  // against chars in image titles that have specific meaning in HTML
-  var entityMap = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-    '/': '&#x2F;'
-  };
-  function escapeHtml(string) {
-    return String(string).replace(/[&<>"'\/]/g, function(s) {
-      return entityMap[s];
-    });
-  }
-
   var api = {
     search: function(q, callback) {
       if (!q) {
@@ -105,7 +89,7 @@ function FimageSourceShutterstock() {
               url: url,
               width: width,
               height: height,
-              title: escapeHtml(description) + viewSimilarLink + buyLink
+              title: Fimage.escapeHtml(description) + viewSimilarLink + buyLink
             };
             images.push(image);
           }

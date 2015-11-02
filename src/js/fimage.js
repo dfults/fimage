@@ -50,6 +50,11 @@ function Fimage(id, parent) {
   var viewAreaEl;
   var toolsComponent;     // Components we're using to generate these areas
   var viewComponent;
+  var imageSources = [
+    FimageSourceShutterstock,
+    FimageSourceFlickr
+  ];
+  var curImageSource = 0;
   var imageSourceComponent;
   var images = [];        // Current set of images to display
   var imagePos = 0;       // .. and the current image #
@@ -87,8 +92,8 @@ function Fimage(id, parent) {
         logoAreaEl.style.display = 'none';
       });
 
-      // Init image source (at this time, only one available)
-      imageSourceComponent = new FimageSourceShutterstock();
+      // Init image source
+      imageSourceComponent = new imageSources[curImageSource]();
 
       // As the logo stars fading, show the tools & view
       setTimeout(function() {
@@ -152,7 +157,26 @@ function Fimage(id, parent) {
           viewComponent.show(images, imagePos);
           toolsComponent.updateNavTools(images.length, imagePos);
         }
+      },
+
+      // Input field Double-click on right side callback
+      function(ev) {
+
+        // Rotate through image sources
+        var imageSourceNum = curImageSource + 1;
+        if (imageSourceNum >= imageSources.length) {
+          imageSourceNum = 0;
+        }
+        curImageSource = imageSourceNum;
+        imageSourceComponent = new imageSources[curImageSource]();
+        showTools();  // Regenerate tools area
+
+        setTimeout(function() {
+          toolsComponent.updateSearchString(searchString);
+          search();
+        }, 1000);
       }
+
     );
     toolsComponent.show(view);
   };

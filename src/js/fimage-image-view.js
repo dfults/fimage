@@ -20,10 +20,16 @@ function FimageImageView(parent) {
   var imagePos = 0;
   var center;
 
-  var render = function() {
+  var render = function(showTips) {
     var html = '';
     html += '<div class="fimage-image-view">';
-    html += '<div class="fimage-image-view__center"></div>';
+    html += '<div class="fimage-image-view__center">';
+    if (showTips) {
+      html += '<div class="fimage-image-view__tip">';
+      html += 'New feature: click the right side of the search box to switch ' +
+        'between image sources';
+    };
+    html += '</div>';
     html += '<div class="fimage-image-view__left"></div>';
     html += '<div class="fimage-image-view__right"></div>';
     html += '</div>';
@@ -35,20 +41,22 @@ function FimageImageView(parent) {
     show: function(imagesToShow, positionToShow) {
       images = imagesToShow;
       imagePos = positionToShow;
-      parent.innerHTML = render();
+      parent.innerHTML = render(!imagesToShow || imagesToShow.length == 0);
       center = parent.querySelector('.fimage-image-view__center');
       if (images.length) {
         var image = images[imagePos];
         var imageComponent = new FimageImage(center);
-        imageComponent.show(image);
-        var title = document.createElement('div');
-        title.classList.add('fimage-image-view__title');
-        title.style.top = '-' + (imageComponent.getSpacing().vertical + 5) +
+        imageComponent.show(image, function() {
+          var spacing = imageComponent.getSpacing();
+          var title = document.createElement('div');
+          title.classList.add('fimage-image-view__title');
+          title.style.top = '-' + (spacing.bottom + 5) +
             'px';
 
-        // Note the image title is already escaped, may include html
-        title.innerHTML = image.title;
-        center.appendChild(title);
+          // Note the image title is already escaped, may include html
+          title.innerHTML = image.title;
+          center.appendChild(title);
+        });
       }
     },
     navigate: function(positionToShow) {

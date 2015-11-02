@@ -15,7 +15,8 @@ function FimageTools(
     placeholder,
     searchChangedCallback,
     previousCallback,
-    nextCallback
+    nextCallback,
+    inputDoubleClickCallback
 ) {
 
   // The data list "suggestions" for search area.  I'm not liking
@@ -49,9 +50,10 @@ function FimageTools(
     var html = '';
     html += '<div class="fimage-tools fimage-tool--no-user-select" ' +
             'style="opacity: 0.0">';
-    html += '<div class="fimage-tools__clear-search ' + toolClasses + '"></div>';
+    html += '<div class="fimage-tools__clear-search ' + toolClasses + '">' +
+            '</div>';
     html += '<div class="fimage-tools__search">';
-    html += '<input type="text" placeholder=" ' + placeholder +
+    html += '<input type="text" placeholder=" ' + placeholder  +
             '" list="searchList" value="' + lastProcessedSearch + '"/>';
     html += '</div>';
 
@@ -118,6 +120,19 @@ function FimageTools(
       nextEl.addEventListener('touchstart', next);
       previousEl.addEventListener('touchstart', previous);
     }
+
+    searchInputEl.addEventListener('click', function(ev) {
+      if (!inputDoubleClickCallback) {
+
+        return;
+      }
+
+      // If user clicks on roughly the right side of the search area, let the
+      // callback know, in case it has any behavior for that
+      if (ev.clientX > (88 + searchInputEl.offsetWidth / 2)) {
+        inputDoubleClickCallback();
+      }
+    });
   };
 
   var clearSearch = function(ev) {
@@ -180,7 +195,11 @@ function FimageTools(
     setVisibility(clearEl, showClearSearch);
   };
   var updateSearchString = function(searchString) {
+
+    // Update the search string, but without actually setting our
+    // search-related variables, used for "virtual" types of searches
     searchInputEl.value = searchString;
+    setVisibility(clearEl, searchString);
   };
   var updateNavTools = function(numImages, curImage) {
     var showPrevious = false;
