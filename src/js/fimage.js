@@ -115,11 +115,11 @@ function Fimage(id, parent) {
         searchString = searchAction;
         toolsComponent.updateSearchString(searchString);
         search();
+        ev.preventDefault();
+        ev.stopPropagation();
+        return false;
       }
     }
-    ev.preventDefault();
-    ev.stopPropagation();
-    return false;
   };
 
   var showTools = function() {
