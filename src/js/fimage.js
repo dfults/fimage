@@ -21,6 +21,7 @@
 // * View presents images as it likes, initial single image view presents title
 // * Tools area updates visibility of prev/next areas per view
 // * Responsive design allows window to be sized narrowly down to phone widths
+//   (as tested on Galaxy S3 / Android)
 //
 // Designed as a series of JS modules and CSS restricted to the Fimage*
 // name space, making it easy to incorporate into a larger application:
