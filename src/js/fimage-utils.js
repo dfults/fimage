@@ -9,7 +9,7 @@ Fimage.entityMap = {
   "'": '&#39;',
   '/': '&#x2F;'
 };
-Fimage.escapeHtml = function (string) {
+Fimage.escapeHtml = function(string) {
   return String(string).replace(/[&<>"'\/]/g, function(s) {
     return Fimage.entityMap[s];
   });

@@ -28,7 +28,7 @@ function FimageImageView(parent) {
       html += '<div class="fimage-image-view__tip">';
       html += 'New feature: click the right side of the search box to switch ' +
         'between image sources';
-    };
+    }
     html += '</div>';
     html += '<div class="fimage-image-view__left"></div>';
     html += '<div class="fimage-image-view__right"></div>';

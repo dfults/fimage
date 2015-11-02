@@ -80,7 +80,7 @@ function FimageSourceFlickr() {
       Fimage.simpleAjax('GET', API_URL + '/rest/', params, null /* postData */,
         null /* headerData */,
         function(flickrResponse) {
-          var response = eval(flickrResponse)
+          var response = eval(flickrResponse);
           if (response.stat !== 'ok') {
             return;
 

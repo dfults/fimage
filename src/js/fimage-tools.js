@@ -53,7 +53,7 @@ function FimageTools(
     html += '<div class="fimage-tools__clear-search ' + toolClasses + '">' +
             '</div>';
     html += '<div class="fimage-tools__search">';
-    html += '<input type="text" placeholder=" ' + placeholder  +
+    html += '<input type="text" placeholder=" ' + placeholder +
             '" list="searchList" value="' + lastProcessedSearch + '"/>';
     html += '</div>';
 
@@ -70,7 +70,7 @@ function FimageTools(
   // input)
   var renderSearchList = function(optionsOnly) {
     if (!ENABLE_DATA_LIST) {
-      return "";
+      return '';
 
     }
     if (!optionsOnly) {
